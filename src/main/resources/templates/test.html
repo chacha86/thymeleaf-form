@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{|/test|}" method="post" th:object="${myForm}">
+
+    <input type="text" th:field="*{name}" name="name" placeholder="name">
+    <input type="text" th:field="*{age}" name="age" placeholder="age">
+    <select name="cars[0].model" >
+        <option value="aa">aa</option>
+        <option value="bb">bb</option>
+        <option value="cc">cc</option>
+    </select>
+    <input type="text"  name="cars[0].year" placeholder="car year">
+
+    <select name="cars[1].model" >
+        <option value="aa">aa</option>
+        <option value="bb">bb</option>
+        <option value="cc">cc</option>
+    </select>
+    <input type="text"  name="cars[1].year" placeholder="car year">
+
+    <select name="cars[2].model" >
+        <option value="aa">aa</option>
+        <option value="bb">bb</option>
+        <option value="cc">cc</option>
+    </select>
+    <input type="text"  name="cars[2].year" placeholder="car year">
+    <input type="submit" value="submit">
+
+</form>
+</body>
+</html>

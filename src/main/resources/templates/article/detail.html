@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        <div>제목 :</div>
+        <div th:text="${article.title}"></div>
+    </div>
+    <div>
+        <div>내용 :</div>
+        <div th:text="${article.content}"></div>
+    </div>
+</div>
+<hr>
+<form th:action="@{|/comment/create/${article.id}|}" method="post">
+    <input type="text" name="content" placeholder="댓글 추가">
+    <button type="submit">등록</button>
+</form>
+<ul>
+    <li th:each="comment : ${article.comments}">
+        <div th:text="${comment.content}"></div>
+        <div>
+            <!-- form errors-->
+        </div>
+        <form th:action="@{|/answer/create/${comment.id}|}" method="post" th:object="${answerForm}">
+            <div th:if="${answerForm.commentId == comment.id}" th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            <input type="hidden" name="commentId" th:value="${comment.id}">
+            <input type="text" name="content" placeholder="답글 추가">
+            <button type="submit">등록</button>
+        </form>
+        <ul>
+            <li th:each="answer : ${comment.answers}">
+                <div th:text="${answer.content}"></div>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
